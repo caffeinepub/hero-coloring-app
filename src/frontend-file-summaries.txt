@@ -1,0 +1,23 @@
+{
+  "frontend/src/App.tsx": "Main app component with TanStack Router setup for Home, Gallery, and Studio pages wrapped in AppLayout.",
+  "frontend/src/pages/HomePage.tsx": "Landing page with logo error handling, animated title, and start painting CTA button with warm gradient background.",
+  "frontend/src/pages/GalleryPage.tsx": "Hero gallery displaying 12 hero tiles with premium locking, responsive header layout, and improved visual consistency.",
+  "frontend/src/pages/StudioPage.tsx": "Coloring studio page with drawing surface, brush controls, color palette, and finish/save functionality with polished header styling.",
+  "frontend/src/components/layout/AppLayout.tsx": "Shared layout wrapper with auth button and footer with caffeine.ai attribution and improved styling.",
+  "frontend/src/components/auth/AuthButton.tsx": "Internet Identity login/logout button with loading states and query cache clearing on logout.",
+  "frontend/src/components/gallery/HeroTile.tsx": "Reusable hero tile component with image error handling, fallback placeholder UI, and consistent styling for locked/unlocked states.",
+  "frontend/src/components/premium/UnlockHeroDialog.tsx": "Modal dialog for unlocking premium heroes with simulated ad-watching progress bar and completion flow.",
+  "frontend/src/components/studio/DrawingSurface.tsx": "Canvas-based drawing surface with pointer events for reliable mouse/touch input, independent template loading with error handling, and immediate canvas initialization for drawing that works before template loads.",
+  "frontend/src/components/studio/BrushControls.tsx": "Brush size slider, eraser toggle, and clear button controls for the drawing studio.",
+  "frontend/src/components/studio/ColorPalette.tsx": "Color selection palette with 9 preset colors (red, blue, yellow, green, orange, purple, black, pink, brown).",
+  "frontend/src/components/studio/FinishSaveButton.tsx": "Button to finish coloring and save artwork with improved error handling, loading states, and user-friendly error messages.",
+  "frontend/src/components/saves/MySavesDialog.tsx": "Modal dialog displaying user's saved artworks with download and delete actions.",
+  "frontend/src/components/effects/ConfettiOverlay.tsx": "Canvas-based confetti animation overlay triggered on artwork completion.",
+  "frontend/src/hooks/useVibration.ts": "Hook wrapping the Vibration API with safe fallback for unsupported devices (light, medium, heavy, selection patterns).",
+  "frontend/src/hooks/usePremiumUnlocks.ts": "Hook managing premium hero unlock state with localStorage persistence and auth-aware clearing.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations (get/create/delete artworks, get owned artwork IDs).",
+  "frontend/src/hooks/useArtworks.ts": "Convenience hook wrapping artwork queries and mutations with simplified API.",
+  "frontend/src/lib/heroes.ts": "Hero metadata definition mapping 12 heroes to their template image paths and premium status (7-12 are premium).",
+  "frontend/src/index.css": "Global styles with warm OKLCH color system, Comic Sans font stack, hero-themed utilities, and refined animations for better visual polish.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with Comic Sans font family and warm color theme tokens."
+}

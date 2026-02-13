@@ -1,0 +1,114 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-fix-the-coloring-studio-so-users-can-reliably-draw-paint-on-top-of-the-hero-template-on-both-mouse-and-touch-devices-including-when-the-template-image-fails-to-load-or-is-slow-to-load",
+      "featureTitle": "Fix the Coloring Studio so users can reliably draw/paint on top of the hero template on both mouse and touch devices, including when the template image fails to load or is slow to load.",
+      "files": [
+        "frontend/src/components/studio/DrawingSurface.tsx",
+        "frontend/src/pages/StudioPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-all-hero-template-images-referenced-by-the-app-exist-as-static-frontend-assets-and-are-correctly-wired-so-the-gallery-previews-and-studio-template-layer-render-the-intended-superhero-outlines-not-broken-missing-images",
+      "featureTitle": "Ensure all hero template images referenced by the app exist as static frontend assets and are correctly wired so the Gallery previews and Studio template layer render the intended superhero outlines (not broken/missing images).",
+      "files": [
+        "frontend/src/components/gallery/HeroTile.tsx",
+        "frontend/src/components/studio/DrawingSurface.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-basic-studio-diagnostics-and-guardrails-to-prevent-silent-failures-e-g-template-image-load-error-handling-canvas-size-initialization-and-safe-defaults-so-the-studio-never-appears-stuck-or-unusable",
+      "featureTitle": "Add basic Studio diagnostics and guardrails to prevent silent failures (e.g., template image load error handling, canvas size initialization, and safe defaults) so the Studio never appears ‘stuck’ or unusable.",
+      "files": [
+        "frontend/src/components/studio/DrawingSurface.tsx",
+        "frontend/src/components/studio/FinishSaveButton.tsx",
+        "frontend/src/pages/StudioPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-polish-the-overall-ui-to-feel-cool-and-less-like-a-rough-draft-by-improving-visual-consistency-spacing-typography-animation-restraint-and-button-controls-styling-across-home-gallery-and-studio-while-keeping-user-facing-text-in-english",
+      "featureTitle": "Polish the overall UI to feel “cool” and less like a rough draft by improving visual consistency, spacing, typography/animation restraint, and button/controls styling across Home, Gallery, and Studio while keeping user-facing text in English.",
+      "files": [
+        "frontend/src/components/gallery/HeroTile.tsx",
+        "frontend/src/components/layout/AppLayout.tsx",
+        "frontend/src/index.css",
+        "frontend/src/pages/GalleryPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/StudioPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-render-all-required-generated-images-as-static-assets-from-the-frontend-do-not-serve-images-through-the-backend-and-update-the-app-to-use-those-exact-filenames-for-logo-templates",
+      "featureTitle": "Render all required generated images as static assets from the frontend (do not serve images through the backend), and update the app to use those exact filenames for logo/templates.",
+      "files": [
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Coloring Studio reliability fixes, asset wiring, and UI polish",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "summary": "Make Studio drawing reliable across mouse/touch and independent of template image loading speed/failure, with correct pointer alignment across viewports.",
+      "acceptanceCriteria": [
+        "In Studio, drawing works with mouse (desktop) and touch (mobile) without needing to refresh or re-enter the page.",
+        "Drawing continues to work even if the template image has not loaded yet (e.g., strokes still appear on the drawing layer).",
+        "If the template image cannot be loaded, the UI shows a clear, kid-friendly error state and still allows drawing on a blank background.",
+        "Strokes are aligned with the pointer/finger position across different viewport sizes (no consistent offset/scaling bug)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/studio/DrawingSurface.tsx",
+          "operation": "modify",
+          "description": "Refactor the drawing input and coordinate mapping to be robust on both mouse and touch: use pointer events (with pointer capture) for a single input path, remove the dependency on templateLoaded for rendering strokes, and fix scaling/offset issues by basing stroke coordinates on a stable internal coordinate system that stays in sync with the displayed canvas size (e.g., normalized coordinates + redraw on resize). Add template image loading state handling (loading/loaded/error) that never blocks drawing."
+        },
+        {
+          "path": "frontend/src/pages/StudioPage.tsx",
+          "operation": "modify",
+          "description": "Wire Studio UI to display a clear, kid-friendly template status (loading / failed) without blocking interaction, and ensure the drawing surface area stays usable on initial mount and after orientation/viewport size changes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Ensure all 12 hero template images exist as static assets and Gallery/Studio handle missing assets gracefully without breaking drawing.",
+      "acceptanceCriteria": [
+        "All 12 heroes in the Gallery render a visible template preview (no broken image icons).",
+        "Opening any hero in Studio shows the correct template outline faintly in the background.",
+        "Hero template image paths used in code resolve to files under frontend/public/assets/generated.",
+        "If an asset is missing at runtime, the UI handles it gracefully (e.g., placeholder + message) rather than silently breaking drawing."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/gallery/HeroTile.tsx",
+          "operation": "modify",
+          "description": "Add resilient image rendering for hero previews: handle image load errors via a fallback UI (placeholder thumbnail + short message) instead of showing a broken image icon. Keep the tile clickable and do not allow image failure to impact navigation."
+        },
+        {
+          "path": "frontend/src/components/studio/DrawingSurface.tsx",
+          "operation": "modify",
+          "description": "Add explicit template image load error handling for the template layer (detect failures and switch to a safe blank-background mode while allowing drawing). Also expose enough state (or render inline status) so Studio can communicate template load failures clearly."
+        },
+        {
+          "path": "frontend/src/lib/heroes.ts",
+          "operation": "modify",
+          "description": "Audit and keep hero templatePath values consistent and centralized for all 12 heroes, ensuring they resolve to static files under frontend/public/assets/generated and match the required filenames exactly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add Studio diagnostics/guardrails so template failures or canvas initialization issues never leave the Studio stuck or silently unusable.",
+      "acceptanceCriteria": [
+        "Template load failures are detected and surfaced in the UI (not only in console).",
+        "Canvas dimensions are initialized to a sensible default when the template size is unknown, and update correctly once the template loads.",
+        "There is no state where Studio shows a blank area and user input produces no visible output without an explanation to the user."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/studio/DrawingSurface.tsx",
+          "operation": "modify",
+          "description": "Add guardrails: initialize both canvases to sensible default dimensions immediately (before any template metadata is available), update dimensions safely when template size becomes known, and ensure redraw paths cannot early-return into a 'no output' state. Add user-visible status messaging for template load state and defensive handling for export when template is unavailable."
+        },
+        {
+          "path": "frontend/src/pages/StudioPage.tsx",
+          "operation": "modify",
+          "description": "Add a small, clear Studio status/diagnostics strip near the drawing area that explains what’s happening (e.g., template loading, template failed but drawing still works) so the user never sees an unexplained blank or non-responsive area."
+        },
+        {
+          "path": "frontend/src/components/studio/FinishSaveButton.tsx",
+          "operation": "modify",
+          "description": "Tighten save/export guardrails to avoid silent failures: improve user-facing error messaging for export failures and ensure messaging remains in English and consistent with the rest of the app styling."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Polish visual consistency and cohesion across Home, Gallery, and Studio without adding new features; keep all user-facing text in English.",
+      "acceptanceCriteria": [
+        "Home, Gallery, and Studio share consistent component styling (buttons, cards, headers, shadows) and spacing rhythm.",
+        "Key actions (Start Painting, hero tiles, brush controls, finish/save) look intentional and cohesive rather than mismatched.",
+        "No new features are added as part of this polish—only visual/UX improvements to existing screens and interactions.",
+        "All user-facing text remains in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Introduce a small set of reusable utility classes (via Tailwind @layer utilities) for consistent button/card/header styling and spacing rhythm, and reduce overly loud animations while preserving a playful feel. Ensure these styles are used by Home, Gallery, and Studio to look cohesive."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Apply the shared styling patterns for the logo, title, and Start Painting button to improve visual consistency and spacing while keeping all text in English."
+        },
+        {
+          "path": "frontend/src/pages/GalleryPage.tsx",
+          "operation": "modify",
+          "description": "Align Gallery header/buttons and grid spacing with the same shared styling patterns used on Home and Studio for a cohesive look-and-feel."
+        },
+        {
+          "path": "frontend/src/pages/StudioPage.tsx",
+          "operation": "modify",
+          "description": "Update Studio header and controls container styling to match the shared design language (consistent button styling, spacing, and restrained motion) without changing existing features."
+        },
+        {
+          "path": "frontend/src/components/gallery/HeroTile.tsx",
+          "operation": "modify",
+          "description": "Polish Hero tile visuals (shadows, borders, typography) to match the shared card style and keep locked/unlocked states clear and consistent."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Polish global layout/footer styling to better match the updated theme (consistent typography, spacing, and contrast) while keeping all user-facing text in English."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Serve all required generated images as static frontend assets and wire exact filenames for logo and hero templates.",
+      "acceptanceCriteria": [
+        "All required images are placed under frontend/public/assets/generated and load via /assets/generated/... paths.",
+        "The app uses the generated logo file hero-coloring-logo.dim_512x512.png on the Home screen without broken links.",
+        "The app uses hero-1-template.dim_1024x1024.png through hero-12-template.dim_1024x1024.png for template rendering as referenced in frontend/src/lib/heroes.ts."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/hero-coloring-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated logo asset at the exact path frontend/public/assets/generated/hero-coloring-logo.dim_512x512.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-1-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-1-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-2-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-2-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-3-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-3-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-4-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-4-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-5-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-5-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-6-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-6-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-7-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-7-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-8-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-8-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-9-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-9-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-10-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-10-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-11-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-11-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-12-template.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated template asset at the exact path frontend/public/assets/generated/hero-12-template.dim_1024x1024.png so it can be served statically by the frontend."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Verify the Home screen references the exact generated logo filename /assets/generated/hero-coloring-logo.dim_512x512.png and handle load errors gracefully (fallback UI) rather than showing a broken image."
+        }
+      ]
+    }
+  ]
+}

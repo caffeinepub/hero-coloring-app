@@ -1,0 +1,139 @@
+{
+  "kind": "build_request",
+  "title": "Fix broken Coloring Studio painting/templates and polish the app’s look-and-feel",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "text": "Fix the Coloring Studio so users can reliably draw/paint on top of the hero template on both mouse and touch devices, including when the template image fails to load or is slow to load.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "I can't paint the superheros ...the coloring template is not working.....fix everything that needs fixing....make the app cool 😎 this draft is wack"
+        ]
+      },
+      "acceptanceCriteria": [
+        "In Studio, drawing works with mouse (desktop) and touch (mobile) without needing to refresh or re-enter the page.",
+        "Drawing continues to work even if the template image has not loaded yet (e.g., strokes still appear on the drawing layer).",
+        "If the template image cannot be loaded, the UI shows a clear, kid-friendly error state and still allows drawing on a blank background.",
+        "Strokes are aligned with the pointer/finger position across different viewport sizes (no consistent offset/scaling bug)."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Ensure all hero template images referenced by the app exist as static frontend assets and are correctly wired so the Gallery previews and Studio template layer render the intended superhero outlines (not broken/missing images).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "the coloring template is not working"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All 12 heroes in the Gallery render a visible template preview (no broken image icons).",
+        "Opening any hero in Studio shows the correct template outline faintly in the background.",
+        "Hero template image paths used in code resolve to files under frontend/public/assets/generated.",
+        "If an asset is missing at runtime, the UI handles it gracefully (e.g., placeholder + message) rather than silently breaking drawing."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Add basic Studio diagnostics and guardrails to prevent silent failures (e.g., template image load error handling, canvas size initialization, and safe defaults) so the Studio never appears ‘stuck’ or unusable.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "fix everything that needs fixing"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Template load failures are detected and surfaced in the UI (not only in console).",
+        "Canvas dimensions are initialized to a sensible default when the template size is unknown, and update correctly once the template loads.",
+        "There is no state where Studio shows a blank area and user input produces no visible output without an explanation to the user."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Polish the overall UI to feel “cool” and less like a rough draft by improving visual consistency, spacing, typography/animation restraint, and button/controls styling across Home, Gallery, and Studio while keeping user-facing text in English.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "make the app cool 😎 this draft is wack"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Home, Gallery, and Studio share consistent component styling (buttons, cards, headers, shadows) and spacing rhythm.",
+        "Key actions (Start Painting, hero tiles, brush controls, finish/save) look intentional and cohesive rather than mismatched.",
+        "No new features are added as part of this polish—only visual/UX improvements to existing screens and interactions.",
+        "All user-facing text remains in English."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Render all required generated images as static assets from the frontend (do not serve images through the backend), and update the app to use those exact filenames for logo/templates.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "the coloring template is not working"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All required images are placed under frontend/public/assets/generated and load via /assets/generated/... paths.",
+        "The app uses the generated logo file hero-coloring-logo.dim_512x512.png on the Home screen without broken links.",
+        "The app uses hero-1-template.dim_1024x1024.png through hero-12-template.dim_1024x1024.png for template rendering as referenced in frontend/src/lib/heroes.ts."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit files under frontend/src/components/ui (compose them instead).",
+    "Do not modify immutable hook files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx.",
+    "Backend must remain a single Motoko actor in backend/main.mo; only add backend migration if a state upgrade is required."
+  ],
+  "nonGoals": [
+    "Add third-party rewarded ad integration (unlock flow remains simulated).",
+    "Add real-time collaboration or multiplayer drawing.",
+    "Introduce external databases or non-Motoko backend services.",
+    "Change authentication provider beyond Internet Identity."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Hero outline template #1, clean black line art on transparent background (hero-1-template.dim_1024x1024.png)",
+      "Hero outline template #2, clean black line art on transparent background (hero-2-template.dim_1024x1024.png)",
+      "Hero outline template #3, clean black line art on transparent background (hero-3-template.dim_1024x1024.png)",
+      "Hero outline template #4, clean black line art on transparent background (hero-4-template.dim_1024x1024.png)",
+      "Hero outline template #5, clean black line art on transparent background (hero-5-template.dim_1024x1024.png)",
+      "Hero outline template #6, clean black line art on transparent background (hero-6-template.dim_1024x1024.png)",
+      "Hero outline template #7, clean black line art on transparent background (hero-7-template.dim_1024x1024.png)",
+      "Hero outline template #8, clean black line art on transparent background (hero-8-template.dim_1024x1024.png)",
+      "Hero outline template #9, clean black line art on transparent background (hero-9-template.dim_1024x1024.png)",
+      "Hero outline template #10, clean black line art on transparent background (hero-10-template.dim_1024x1024.png)",
+      "Hero outline template #11, clean black line art on transparent background (hero-11-template.dim_1024x1024.png)",
+      "Hero outline template #12, clean black line art on transparent background (hero-12-template.dim_1024x1024.png)",
+      "App logo: bold, playful ‘HERO COLORING’ wordmark, warm colors, sticker-like outline, transparent background (hero-coloring-logo.dim_512x512.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

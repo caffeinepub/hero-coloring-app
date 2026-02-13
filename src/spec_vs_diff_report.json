@@ -1,0 +1,57 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T08:25:04.637Z",
+  "summary": "Diff focuses on UI polish across Home/Gallery/Studio and improves Studio robustness with early canvas initialization and template load error handling. Gallery/Home now include image fallback UI. However, the diff does not show the required static generated image assets being added under frontend/public/assets/generated, and key Studio acceptance criteria (pointer alignment across viewports and a clear kid-friendly in-UI template load error state) cannot be fully verified from the truncated DrawingSurface diff.",
+  "missing_requirements": [
+    {
+      "id": "REQ-9",
+      "requirement": "Ensure all hero template images referenced by the app exist as static frontend assets and are correctly wired so the Gallery previews and Studio template layer render the intended superhero outlines (not broken/missing images).",
+      "reason": "No new static assets were added in the diff (Added: 0). While Gallery tiles handle image errors, the diff does not provide evidence that all 12 required template PNGs exist under frontend/public/assets/generated at build/runtime.",
+      "evidence": [
+        "File diff summary: \"Added: 0\" (no assets added)",
+        "frontend/src/components/gallery/HeroTile.tsx"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "requirement": "Render all required generated images as static assets from the frontend (do not serve images through the backend), and update the app to use those exact filenames for logo/templates.",
+      "reason": "HomePage references the required logo filename/path, but the diff shows no generated image files being added under frontend/public/assets/generated. Template filename/path updates in frontend/src/lib/heroes.ts are referenced in the file summaries but not evidenced by an actual diff of that file, and no assets were added.",
+      "evidence": [
+        "frontend/src/pages/HomePage.tsx",
+        "frontend-file-summaries.txt (mentions frontend/src/lib/heroes.ts but no actual diff shown)",
+        "File diff summary: \"Added: 0\" (no assets added)"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Fix the Coloring Studio so users can reliably draw/paint on top of the hero template on both mouse and touch devices, including when the template image fails to load or is slow to load.",
+      "reason": "The DrawingSurface changes strongly suggest improvements (default canvas sizing, template load error status, redraw independent of template), but the diff is truncated right at getCanvasPoint and does not provide enough evidence to confirm pointer/finger alignment across viewport sizes or the full mouse+touch event handling implementation.",
+      "evidence": [
+        "frontend/src/components/studio/DrawingSurface.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "requirement": "Add basic Studio diagnostics and guardrails to prevent silent failures (e.g., template image load error handling, canvas size initialization, and safe defaults) so the Studio never appears ‘stuck’ or unusable.",
+      "reason": "Template load failures are detected in state (templateStatus) and logged, and canvas defaults are initialized, but the diff is truncated and does not show the UI surfacing of the error/diagnostic state (e.g., kid-friendly message/placeholder rendered when templateStatus === 'error').",
+      "evidence": [
+        "frontend/src/components/studio/DrawingSurface.tsx (truncated)"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.62,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/gallery/HeroTile.tsx",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "frontend/src/components/studio/DrawingSurface.tsx",
+    "frontend/src/components/studio/FinishSaveButton.tsx",
+    "frontend/src/index.css",
+    "frontend/src/pages/GalleryPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/StudioPage.tsx",
+    "project_state.json"
+  ]
+}

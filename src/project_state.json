@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Flutter mobile app: \"Hero Coloring App\" for kids with home screen, hero gallery, and a coloring studio (drawing canvas with brush size, color palette, eraser, haptics, confetti celebration, and finish/save action placeholder).",
+  "architectural_notes": [
+    "Flutter app locked to portrait orientation via SystemChrome.setPreferredOrientations.",
+    "Uses CustomPainter with a list of drawing points (null as stroke separator) to render freehand drawing.",
+    "Uses confetti package for celebration effects and system haptics for feedback."
+  ],
+  "known_issues": [
+    "Coloring template image is currently a placeholder Icon; Image.asset(widget.imagePath) not yet wired.",
+    "Finish & Save button has no actual save logic implemented.",
+    "Premium hero unlock flow is only a dialog; no actual rewarded-ad integration or unlock persistence.",
+    "Users report they can't paint/draw on the superhero templates (Coloring Studio input/rendering appears broken)."
+  ],
+  "isFixRequest": true,
+  "imageRequirements": "## Required Images\n- Hero outline template #1, clean black line art on transparent background (hero-1-template.dim_1024x1024.png)\n- Hero outline template #2, clean black line art on transparent background (hero-2-template.dim_1024x1024.png)\n- Hero outline template #3, clean black line art on transparent background (hero-3-template.dim_1024x1024.png)\n- Hero outline template #4, clean black line art on transparent background (hero-4-template.dim_1024x1024.png)\n- Hero outline template #5, clean black line art on transparent background (hero-5-template.dim_1024x1024.png)\n- Hero outline template #6, clean black line art on transparent background (hero-6-template.dim_1024x1024.png)\n- Hero outline template #7, clean black line art on transparent background (hero-7-template.dim_1024x1024.png)\n- Hero outline template #8, clean black line art on transparent background (hero-8-template.dim_1024x1024.png)\n- Hero outline template #9, clean black line art on transparent background (hero-9-template.dim_1024x1024.png)\n- Hero outline template #10, clean black line art on transparent background (hero-10-template.dim_1024x1024.png)\n- Hero outline template #11, clean black line art on transparent background (hero-11-template.dim_1024x1024.png)\n- Hero outline template #12, clean black line art on transparent background (hero-12-template.dim_1024x1024.png)\n- App logo: bold, playful ‘HERO COLORING’ wordmark, warm colors, sticker-like outline, transparent background (hero-coloring-logo.dim_512x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-the-app-s-core-navigation-and-pages-to-match-the-provided-hero-coloring-app-flow-1-home-screen-with-an-animated-title-hero-coloring-and-a-primary-cta-start-painting-2-hero-gallery-screen-that-shows-12-heroes-in-a-grid-and-3-coloring-studio-screen-for-a-selected-hero-template",
+      "title": "Create the app’s core navigation and pages to match the provided “Hero Coloring App” flow: (1) Home screen with an animated title “HERO COLORING” and a primary CTA “START PAINTING”, (2) Hero Gallery screen that shows 12 heroes in a grid, and (3) Coloring Studio screen for a selected hero template.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-premium-gating-for-heroes-7-12-in-the-gallery-show-a-locked-premium-visual-state-and-when-tapped-open-an-unlock-modal-that-simulates-the-watch-ad-flow-no-third-party-ad-integration-and-then-unlocks-the-hero-for-the-current-user",
+      "title": "Implement premium gating for heroes 7–12 in the Gallery: show a locked/premium visual state, and when tapped, open an “unlock” modal that simulates the ‘watch ad’ flow (no third-party ad integration) and then unlocks the hero for the current user.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-coloring-studio-drawing-experience-display-the-selected-hero-outline-template-as-a-faint-background-allow-freehand-drawing-on-top-via-pointer-touch-input-provide-brush-size-control-a-color-palette-an-eraser-and-a-clear-reset-action",
+      "title": "Build the Coloring Studio drawing experience: display the selected hero outline template as a faint background, allow freehand drawing on top via pointer/touch input, provide brush-size control, a color palette, an eraser, and a clear/reset action.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-finish-save-when-the-user-taps-it-play-a-confetti-celebration-overlay-and-save-the-resulting-colored-artwork-as-an-image-provide-a-way-to-view-download-saved-artworks-and-persist-them-per-user",
+      "title": "Implement “FINISH & SAVE”: when the user taps it, play a confetti celebration overlay and save the resulting colored artwork as an image. Provide a way to view/download saved artworks and persist them per user.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-tactile-feedback-equivalents-on-the-web-use-the-browser-vibration-api-when-available-for-key-interactions-start-painting-selecting-a-hero-selecting-a-color-eraser-toggle-finishing-saving-ensure-the-app-still-functions-when-vibration-is-unavailable",
+      "title": "Add tactile feedback equivalents on the web: use the browser Vibration API (when available) for key interactions (start painting, selecting a hero, selecting a color, eraser toggle, finishing/saving). Ensure the app still functions when vibration is unavailable.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-internet-identity-sign-in-to-enable-per-user-persistence-for-premium-unlocks-and-saved-artworks-show-a-simple-sign-in-out-control-in-the-ui-and-handle-unauthenticated-users-gracefully-e-g-allow-coloring-locally-but-require-sign-in-to-persist-to-backend",
+      "title": "Add Internet Identity sign-in to enable per-user persistence for premium unlocks and saved artworks; show a simple sign-in/out control in the UI and handle unauthenticated users gracefully (e.g., allow coloring locally but require sign-in to persist to backend).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-define-and-apply-a-consistent-kid-friendly-visual-theme-distinct-from-blue-purple-dominant-palettes-across-all-pages-warm-gradients-bold-comic-style-typography-playful-buttons-and-large-touch-targets",
+      "title": "Define and apply a consistent, kid-friendly visual theme (distinct from blue/purple-dominant palettes) across all pages: warm gradients, bold comic-style typography, playful buttons, and large touch targets.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-coloring-studio-so-users-can-reliably-draw-paint-on-top-of-the-hero-template-on-both-mouse-and-touch-devices-including-when-the-template-image-fails-to-load-or-is-slow-to-load",
+      "title": "Fix the Coloring Studio so users can reliably draw/paint on top of the hero template on both mouse and touch devices, including when the template image fails to load or is slow to load.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-hero-template-images-referenced-by-the-app-exist-as-static-frontend-assets-and-are-correctly-wired-so-the-gallery-previews-and-studio-template-layer-render-the-intended-superhero-outlines-not-broken-missing-images",
+      "title": "Ensure all hero template images referenced by the app exist as static frontend assets and are correctly wired so the Gallery previews and Studio template layer render the intended superhero outlines (not broken/missing images).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-studio-diagnostics-and-guardrails-to-prevent-silent-failures-e-g-template-image-load-error-handling-canvas-size-initialization-and-safe-defaults-so-the-studio-never-appears-stuck-or-unusable",
+      "title": "Add basic Studio diagnostics and guardrails to prevent silent failures (e.g., template image load error handling, canvas size initialization, and safe defaults) so the Studio never appears ‘stuck’ or unusable.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-polish-the-overall-ui-to-feel-cool-and-less-like-a-rough-draft-by-improving-visual-consistency-spacing-typography-animation-restraint-and-button-controls-styling-across-home-gallery-and-studio-while-keeping-user-facing-text-in-english",
+      "title": "Polish the overall UI to feel “cool” and less like a rough draft by improving visual consistency, spacing, typography/animation restraint, and button/controls styling across Home, Gallery, and Studio while keeping user-facing text in English.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-all-required-generated-images-as-static-assets-from-the-frontend-do-not-serve-images-through-the-backend-and-update-the-app-to-use-those-exact-filenames-for-logo-templates",
+      "title": "Render all required generated images as static assets from the frontend (do not serve images through the backend), and update the app to use those exact filenames for logo/templates.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create Flutter \"Hero Coloring App\" with Home screen (animated title) and Start Painting navigation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add Hero Gallery screen with 12 heroes, free vs premium gating, and ad/unlock popup for premium heroes",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement Coloring Studio with drawing canvas (gesture-based), brush size slider, color palette, eraser, and clear/reset",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add haptic feedback interactions and confetti celebration on Finish action",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Implement \"Finish & Save\" functionality for saving the colored artwork (currently placeholder)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Fix Coloring Studio so users can actually paint/draw on superhero templates (template/background and input rendering issues)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Polish/improve overall app look-and-feel to be \"cool\" (UI/visual theme/UX pass beyond current draft)",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Hero Coloring App",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

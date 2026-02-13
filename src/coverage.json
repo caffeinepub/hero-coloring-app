@@ -1,0 +1,147 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T08:25:04.641Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 5,
+    "items": [
+      {
+        "id": "REQ-10",
+        "summary": "Add basic Studio diagnostics and guardrails to prevent silent failures (e.g., template image load error handling, canvas size initialization, and safe defaults) so the Studio never appears ‘stuck’ or unusable.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/studio/DrawingSurface.tsx",
+          "frontend/src/pages/StudioPage.tsx",
+          "frontend/src/components/studio/FinishSaveButton.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/studio/DrawingSurface.tsx",
+          "frontend/src/pages/StudioPage.tsx",
+          "frontend/src/components/studio/FinishSaveButton.tsx"
+        ]
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Polish the overall UI to feel “cool” and less like a rough draft by improving visual consistency, spacing, typography/animation restraint, and button/controls styling across Home, Gallery, and Studio while keeping user-facing text in English.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/pages/GalleryPage.tsx",
+          "frontend/src/pages/StudioPage.tsx",
+          "frontend/src/components/gallery/HeroTile.tsx",
+          "frontend/src/components/layout/AppLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/pages/GalleryPage.tsx",
+          "frontend/src/pages/StudioPage.tsx",
+          "frontend/src/components/gallery/HeroTile.tsx",
+          "frontend/src/components/layout/AppLayout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Render all required generated images as static assets from the frontend (do not serve images through the backend), and update the app to use those exact filenames for logo/templates.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/hero-coloring-logo.dim_512x512.png",
+          "frontend/public/assets/generated/hero-1-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-2-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-3-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-4-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-5-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-6-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-7-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-8-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-9-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-10-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-11-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-12-template.dim_1024x1024.png",
+          "frontend/src/pages/HomePage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/hero-coloring-logo.dim_512x512.png",
+          "frontend/public/assets/generated/hero-1-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-2-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-3-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-4-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-5-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-6-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-7-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-8-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-9-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-10-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-11-template.dim_1024x1024.png",
+          "frontend/public/assets/generated/hero-12-template.dim_1024x1024.png",
+          "frontend/src/pages/HomePage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Fix the Coloring Studio so users can reliably draw/paint on top of the hero template on both mouse and touch devices, including when the template image fails to load or is slow to load.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/studio/DrawingSurface.tsx",
+          "frontend/src/pages/StudioPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/studio/DrawingSurface.tsx",
+          "frontend/src/pages/StudioPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Ensure all hero template images referenced by the app exist as static frontend assets and are correctly wired so the Gallery previews and Studio template layer render the intended superhero outlines (not broken/missing images).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/gallery/HeroTile.tsx",
+          "frontend/src/components/studio/DrawingSurface.tsx",
+          "frontend/src/lib/heroes.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/gallery/HeroTile.tsx",
+          "frontend/src/components/studio/DrawingSurface.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/public/assets/generated/hero-1-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-10-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-11-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-12-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-2-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-3-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-4-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-5-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-6-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-7-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-8-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-9-template.dim_1024x1024.png",
+    "frontend/public/assets/generated/hero-coloring-logo.dim_512x512.png",
+    "frontend/src/components/gallery/HeroTile.tsx",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "frontend/src/components/studio/DrawingSurface.tsx",
+    "frontend/src/components/studio/FinishSaveButton.tsx",
+    "frontend/src/index.css",
+    "frontend/src/pages/GalleryPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/StudioPage.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
